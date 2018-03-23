@@ -1,0 +1,3 @@
+Vehiculo#1#Toyota#1500.5f#A#true#20170101
+Vivienda#1#Toyota#1500.5f#A#true#20170101
+Vivienda#1#EdificioPanama#2500.0f#A#false#20170101
