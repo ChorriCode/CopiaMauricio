@@ -21,16 +21,12 @@ public class AccesosTienda {
 	public Connection getConexion(String dominio, String db, String usr, String clave, String driver) {
 		
 		Connection conn = null;
-		Statement stmt = null;
 		try {
 			//Registro el driver JDBC
-			Class.forName(driver);
-			
+			Class.forName(driver);		
 			//Abrimos una coneccion a la Base de Datos
 			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(dominio+db,usr,clave);
-			
-	      
+			conn = DriverManager.getConnection(dominio+db,usr,clave);				      
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
@@ -48,21 +44,21 @@ public class AccesosTienda {
 			String sql = "SELECT * FROM " + tabla;
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery(sql);
-			ResultSetMetaData metaData = rs.getMetaData();
-			
+			ResultSetMetaData metaData = rs.getMetaData();			
 			while (rs.next()) {
 				HashMap<String, Object> datosUnaLinea = new HashMap<String,Object>();
 				for (int i = 1; i <= metaData.getColumnCount(); i++) {
 					datosUnaLinea.put(metaData.getColumnName(i), rs.getObject(i));
-					System.out.println(rs.getObject(i));
-					
+					//System.out.println(rs.getObject(i));					
 				}
 				registros.add(datosUnaLinea);
 			}
-			System.out.println(metaData.getColumnLabel(2));
-			System.out.println(metaData.getColumnTypeName(2));
-			System.out.println(metaData.getColumnDisplaySize(2));
-			System.out.println(metaData.getColumnName(2));
+//			System.out.println(metaData.getColumnLabel(2));
+//			System.out.println(metaData.getColumnTypeName(2));
+//			System.out.println(metaData.getColumnDisplaySize(2));
+//			System.out.println(metaData.getColumnName(2));
+
+			
 			stm.close();
 			rs.close();
 		} catch (SQLException e) {
@@ -73,38 +69,26 @@ public class AccesosTienda {
 	}
 	
 	
-	public void mostrarResulsetArrayListHashMap(ArrayList<HashMap<String,Object>> datos) {
+	public void mostrarResulsetArrayListHashMap(ArrayList<HashMap<String,Object>> datos, String tabla) {
 		
-		float acumulador2 = 0;
-		float[] acumuladorVisitantesMes = new float[12];
-		System.out.print("\t");
 
-		for (HashMap<String,Object> registro : datos) {
-			Set<String> nombreColumnas = registro.keySet();
-			System.out.print("\t" + nombreColumnas);
+		System.out.println("*************** \033[4;37;44mTABLA : " + tabla + "\033[0m *************************************************");
+		Set<String> unRegistro = datos.get(0).keySet();
+		String[] nombreColumnasTabla = new String[unRegistro.size()];
+		int indice = 0;
+		for ( String unCampo : unRegistro) {			
+			System.out.printf("  \033[0;40;32m %-25s", unCampo + "\033[0m");
+			nombreColumnasTabla[indice++] = unCampo;
 		}
-		System.out.print("\t" + "TOTAL");
 		System.out.println();
-		for (int i = 0; i < islas.length; i++) {
-			System.out.print(islas[i]);
-			float acumulador = 0.0f;
-			for (int j = 0; j < meses.length; j++) {
-				System.out.printf("\t%.2f" , listaVisitantes.get(i).get(j));
-				acumulador += listaVisitantes.get(i).get(j);
-				acumuladorVisitantesMes[j] += listaVisitantes.get(i).get(j);
-			}
-			acumulador2 += acumulador;
-			System.out.printf("\t%.2f", acumulador);
+		for (int i = 0; i < datos.size(); i++) {	
+			for (int j = 0; j < datos.get(i).size(); j++) {
+				System.out.printf("%-25s", datos.get(i).get(nombreColumnasTabla[j]));
+			}		
 			System.out.println("");
-
 		}
-		System.out.print("TOTAL: \t");
-
-		for (int j = 0; j < meses.length; j++) {
-			System.out.printf("\t%.2f" , acumuladorVisitantesMes[j]);
-		}
-		System.out.print("\t" + acumulador2);
-		
 	}
+
+		
 
 }

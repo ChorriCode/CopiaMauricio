@@ -242,8 +242,14 @@ public class Principal {
 			    String userName = "u5517321_01";
 			    String password = "BU4959popi";
 			    Connection conn = myAcceso.getConexion(url, dbName, userName, password, driver);
-			    myAcceso.getAllRecords(conn, tabla);
+			    ArrayList<HashMap<java.lang.String, Object>> todosLosDatos = myAcceso.getAllRecords(conn, tabla);
+			    myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
 				
+			    
+			    tabla = "Empleados";
+			    todosLosDatos = myAcceso.getAllRecords(conn, tabla);
+			    myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
+			    
 		 System.out.println("\nfin");
 		
 	}
