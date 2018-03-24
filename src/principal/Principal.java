@@ -233,13 +233,13 @@ public class Principal {
 //			    String dbName = "TiendaInformatica";
 //			    String driver = "com.mysql.jdbc.Driver";
 //			    String userName = "root";
-//			    String password = "Gratis007";
+//			    String password = "";
 			    String tabla = "Articulos";
 			    
 			    String url = "jdbc:mysql://mysql377.srv-hostalia.com:3306/";
 			    String dbName = "db5517321_educativa";
 			    String driver = "com.mysql.jdbc.Driver";
-			    String userName = "u5517321_f213666";
+			    String userName = "u5517321_01";
 			    String password = "BU4959popi";
 			    Connection conn = myAcceso.getConexion(url, dbName, userName, password, driver);
 			    myAcceso.getAllRecords(conn, tabla);
