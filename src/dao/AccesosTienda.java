@@ -49,7 +49,8 @@ public class AccesosTienda {
 				HashMap<String, Object> datosUnaLinea = new HashMap<String,Object>();
 				for (int i = 1; i <= metaData.getColumnCount(); i++) {
 					datosUnaLinea.put(metaData.getColumnName(i), rs.getObject(i));
-					//System.out.println(rs.getObject(i));					
+					//datosUnaLinea.put(metaData.getColumnName(i), rs.getString(i)); //Hace lo mismo pero con otro método
+					//System.out.println(rs.getString(i));					
 				}
 				registros.add(datosUnaLinea);
 			}
@@ -71,13 +72,13 @@ public class AccesosTienda {
 	
 	public void mostrarResulsetArrayListHashMap(ArrayList<HashMap<String,Object>> datos, String tabla) {
 		
-
-		System.out.println("*************** \033[4;37;44mTABLA : " + tabla + "\033[0m *************************************************");
+		System.out.println();
+		System.out.println("\033[4;37;44m*************** TABLA : " + tabla + "**************************************\033[0m ");
 		Set<String> unRegistro = datos.get(0).keySet();
 		String[] nombreColumnasTabla = new String[unRegistro.size()];
 		int indice = 0;
 		for ( String unCampo : unRegistro) {			
-			System.out.printf("  \033[0;40;32m %-25s", unCampo + "\033[0m");
+			System.out.printf("  \033[0;40;33m %-25s", unCampo + "\033[0m");
 			nombreColumnasTabla[indice++] = unCampo;
 		}
 		System.out.println();
