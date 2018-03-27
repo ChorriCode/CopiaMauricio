@@ -44,7 +44,7 @@ public class AccesosTienda {
 			String sql = "SELECT * FROM " + tabla;
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery(sql);
-			ResultSetMetaData metaData = rs.getMetaData();			
+			ResultSetMetaData metaData = rs.getMetaData();	
 			while (rs.next()) {
 				HashMap<String, Object> datosUnaLinea = new HashMap<String,Object>();
 				for (int i = 1; i <= metaData.getColumnCount(); i++) {
@@ -54,10 +54,20 @@ public class AccesosTienda {
 				}
 				registros.add(datosUnaLinea);
 			}
-//			System.out.println(metaData.getColumnLabel(2));
-//			System.out.println(metaData.getColumnTypeName(2));
-//			System.out.println(metaData.getColumnDisplaySize(2));
-//			System.out.println(metaData.getColumnName(2));
+
+			System.out.println("getColumnLabel   " + metaData.getColumnLabel(2));
+			System.out.println("getColumnName    " + metaData.getColumnName(2));
+			System.out.println("getColumnTypeName   " + metaData.getColumnTypeName(2));
+			System.out.println("getColumnType   " + metaData.getColumnType(2));
+			System.out.println("getColumnDisplaySize   " + metaData.getColumnDisplaySize(2));
+			System.out.println("getColumnCount   " + metaData.getColumnCount());	
+			System.out.println("getPrecision   " + metaData.getPrecision(2));	
+			System.out.println("getScale   " + metaData.getScale(2));	
+			System.out.println("getSchemaName   " + metaData.getSchemaName(2));	
+			System.out.println("getTableName   " + metaData.getTableName(2));	
+			System.out.println("isSearchable   " + metaData.isSearchable(2));	
+			System.out.println("getColumnClassName    " + metaData.getColumnClassName(2));
+			System.out.println("getCatalogName    " + metaData.getCatalogName(2)); //nombre de la BBDD
 
 			
 			stm.close();

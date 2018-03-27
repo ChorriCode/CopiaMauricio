@@ -246,9 +246,9 @@ public class Principal {
 			    myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
 				
 			    
-			    tabla = "Empleados";
-			    todosLosDatos = myAcceso.getAllRecords(conn, tabla);
-			    myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
+			    //tabla = "Empleados";
+			    //todosLosDatos = myAcceso.getAllRecords(conn, tabla);
+			    //myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
 			    
 		 System.out.println("\nfin");
 		
