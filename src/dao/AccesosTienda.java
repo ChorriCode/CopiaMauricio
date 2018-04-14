@@ -17,6 +17,24 @@ public class AccesosTienda {
 	private String clave;
 	private String driver;
 
+	private int getRowCount(ResultSet resultSet) {
+	    if (resultSet == null) {
+	        return 0;
+	    }
+	    try {
+	        resultSet.last();
+	        return resultSet.getRow();
+	    } catch (SQLException exp) {
+	        exp.printStackTrace();
+	    } finally {
+	        try {
+	            resultSet.beforeFirst();
+	        } catch (SQLException exp) {
+	            exp.printStackTrace();
+	        }
+	    }
+	    return 0;
+	}
 	
 	public Connection getConexion(String dominio, String db, String usr, String clave, String driver) {
 		
@@ -44,8 +62,15 @@ public class AccesosTienda {
 			String sql = "SELECT * FROM " + tabla;
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery(sql);
-			ResultSetMetaData metaData = rs.getMetaData();	
+			ResultSetMetaData metaData = rs.getMetaData();
+			if (getRowCount(rs)==0) {
+				System.out.println("NO HAY DATOS");
+				stm.close();
+				rs.close();
+				return null;
+			}
 			while (rs.next()) {
+				if (rs.getRow() == 0) break;
 				HashMap<String, Object> datosUnaLinea = new HashMap<String,Object>();
 				for (int i = 1; i <= metaData.getColumnCount(); i++) {
 					datosUnaLinea.put(metaData.getColumnName(i), rs.getObject(i));
@@ -54,7 +79,7 @@ public class AccesosTienda {
 				}
 				registros.add(datosUnaLinea);
 			}
-
+/*
 			System.out.println("getColumnLabel   " + metaData.getColumnLabel(2));
 			System.out.println("getColumnName    " + metaData.getColumnName(2));
 			System.out.println("getColumnTypeName   " + metaData.getColumnTypeName(2));
@@ -69,7 +94,7 @@ public class AccesosTienda {
 			System.out.println("getColumnClassName    " + metaData.getColumnClassName(2));
 			System.out.println("getCatalogName    " + metaData.getCatalogName(2)); //nombre de la BBDD
 
-			
+			*/
 			stm.close();
 			rs.close();
 		} catch (SQLException e) {
@@ -81,7 +106,7 @@ public class AccesosTienda {
 	
 	
 	public void mostrarResulsetArrayListHashMap(ArrayList<HashMap<String,Object>> datos, String tabla) {
-		
+		if (datos == null) return;
 		System.out.println();
 		System.out.println("\033[4;37;44m*************** TABLA : " + tabla + "**************************************\033[0m ");
 		Set<String> unRegistro = datos.get(0).keySet();

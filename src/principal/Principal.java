@@ -229,26 +229,51 @@ public class Principal {
 				//************************** JDBC y MYSQL ************************
 
 				AccesosTienda myAcceso = new AccesosTienda();
-//			    String url = "jdbc:mysql://localhost:3306/";
-//			    String dbName = "TiendaInformatica";
-//			    String driver = "com.mysql.jdbc.Driver";
-//			    String userName = "root";
-//			    String password = "";
-			    String tabla = "Articulos";
+				
+				//SQLite Local
+/*			    String url = "jdbc:sqlite:c:/Users/JavierHS/git/CopiaMauricio/ficheros/TiendaInformatica.db";
+			    String dbName = "";
+			    String driver = "org.sqlite.JDBC";
+			    String userName = "";
+			    String password = "";
+			    String tabla = "vacia";*/
+				
+				//MySQL en ordenador de Mauricio
+/*			    String url = "jdbc:mysql://192.168.201.97:3306/";
+			    String dbName = "tienda";
+			    String driver = "com.mysql.jdbc.Driver";
+			    String userName = "root";
+			    String password = "123";
+			    String tabla = "books";*/
+
+				//MySQL en LocalHost
+/*			    String url = "jdbc:mysql://localhost:3306/";
+			    String dbName = "tiendainformatica";
+			    String driver = "com.mysql.jdbc.Driver";
+			    String userName = "root";
+			    String password = "Gratis007";
+			    String tabla = "Articulos";*/
 			    
-			    String url = "jdbc:mysql://mysql377.srv-hostalia.com:3306/";
+				//MySQL en LocalHost
+			    String url = "jdbc:mysql://localhost:3306/";
+			    String dbName = "information_schema";
+			    String driver = "com.mysql.jdbc.Driver";
+			    String userName = "root";
+			    String password = "Gratis007";
+			    String tabla = "INNODB_SYS_FOREIGN_COLS";
+			    
+			    //MySQL en Hostalia
+/*			    String url = "jdbc:mysql://mysql377.srv-hostalia.com:3306/";
 			    String dbName = "db5517321_educativa";
 			    String driver = "com.mysql.jdbc.Driver";
 			    String userName = "u5517321_01";
-			    String password = "BU4959popi";
+			    String password = "BU4959popi";*/
 			    Connection conn = myAcceso.getConexion(url, dbName, userName, password, driver);
-			    ArrayList<HashMap<java.lang.String, Object>> todosLosDatos = myAcceso.getAllRecords(conn, tabla);
+			    ArrayList<HashMap<String, Object>> todosLosDatos = myAcceso.getAllRecords(conn, tabla);
 			    myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
-				
+
 			    
-			    //tabla = "Empleados";
-			    //todosLosDatos = myAcceso.getAllRecords(conn, tabla);
-			    //myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
+
 			    
 		 System.out.println("\nfin");
 		
