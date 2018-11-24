@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="driverJDBC_MySQL/mysql-connector-java-5.1.46-bin.jar"/>
 	<classpathentry kind="lib" path="driverJDBC_SQLite/sqlite-jdbc-3.21.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaee-api-8.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

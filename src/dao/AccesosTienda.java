@@ -63,12 +63,12 @@ public class AccesosTienda {
 			Statement stm = conn.createStatement();
 			ResultSet rs = stm.executeQuery(sql);
 			ResultSetMetaData metaData = rs.getMetaData();
-			if (getRowCount(rs)==0) {
+/*			if (getRowCount(rs)==0) {
 				System.out.println("NO HAY DATOS");
 				stm.close();
 				rs.close();
 				return null;
-			}
+			}*/
 			while (rs.next()) {
 				if (rs.getRow() == 0) break;
 				HashMap<String, Object> datosUnaLinea = new HashMap<String,Object>();

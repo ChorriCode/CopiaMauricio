@@ -49,12 +49,21 @@ public class Ejercicios1 {
 		ej2.mostrarVisitantesIslaMes(valorDevuelto2);
 		int[] acumuladoIsla = ej2.getVisitantesIslaYear(valorDevuelto2); //TOTALES POR ISLA
 		int[] acumuladoMes = ej2.getVisistantesIslaMes(valorDevuelto2); //TOTALES POR MES
+		
+		
+		System.out.println("====================================");
+		int[][] matriz= {{1,2,3},{2,3,4},{5,6,7},{1,1,1}};
+		System.out.println(matriz.length);
+		System.out.println(matriz[0].length);
+		String[] aaaaa = "a,b,c,d".split(",");
+		System.out.println(aaaaa);
+		
+		
 		System.exit(0);
 		Ejercicios1 ej1 = new Ejercicios1();
 		ej1.menu("\t MANTENIMIENTO  DE PERSONAS\n");
-		
-		
 
+		
 		System.out.println("FIN DEL PROGRAMA");
 	}
 
@@ -93,6 +102,7 @@ public class Ejercicios1 {
 			
 	}
 
+	@SuppressWarnings("unchecked")
 	private static HashMap sortByValues(HashMap map) {
 		List list = new LinkedList(map.entrySet());
 		// Defined Custom Comparator here

@@ -18,8 +18,8 @@ public class Persona implements Serializable {
 	private Persona padre;
 	private Persona madre;
 
-
-	public Persona() { // constructor sin parámetros
+	// constructor sin parámetros
+	public Persona() { 
 		
 		this.nif = "44882229Y";
 		this.nombre="Anonimo";

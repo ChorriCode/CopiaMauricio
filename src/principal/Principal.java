@@ -221,7 +221,7 @@ public class Principal {
 				//practicas.leerObjetoEnfichero("ficheros/estudiantes.obj");
 				//practicas.copiarObjetosEstudianteEnFicheroTxt("ficheros/estudiantes.obj", "ficheros/estudiantes2.txt");
 				//practicas.leerFicheroTextoProvinciasComAutoYListarDatos();
-				//practicas.leerFicheroTextoProvinciasComAutoYListarDatos2();
+				practicas.leerFicheroTextoProvinciasComAutoYListarDatos2();
 				//ArrayList<VehiculoOtro> listadoVehiculos = practicas.leerFicheroVehiculos("ficheros/vehiculos.txt");
 				//practicas.grabarVehiculosEnFichero(listadoVehiculos);
 				//practicas.leerObjetosVehiculosOtroYMostrarlos("ficheros/vehiculosOtros.obj");
@@ -231,12 +231,12 @@ public class Principal {
 				AccesosTienda myAcceso = new AccesosTienda();
 				
 				//SQLite Local
-/*			    String url = "jdbc:sqlite:c:/Users/JavierHS/git/CopiaMauricio/ficheros/TiendaInformatica.db";
+			    String url = "jdbc:sqlite:ficheros/TiendaInformatica.db";
 			    String dbName = "";
 			    String driver = "org.sqlite.JDBC";
 			    String userName = "";
 			    String password = "";
-			    String tabla = "vacia";*/
+			    String tabla = "Articulos";
 				
 				//MySQL en ordenador de Mauricio
 /*			    String url = "jdbc:mysql://192.168.201.97:3306/";
@@ -255,12 +255,12 @@ public class Principal {
 			    String tabla = "Articulos";*/
 			    
 				//MySQL en LocalHost
-			    String url = "jdbc:mysql://localhost:3306/";
+/*			    String url = "jdbc:mysql://localhost:3306/";
 			    String dbName = "information_schema";
 			    String driver = "com.mysql.jdbc.Driver";
 			    String userName = "root";
 			    String password = "Gratis007";
-			    String tabla = "INNODB_SYS_FOREIGN_COLS";
+			    String tabla = "INNODB_SYS_FOREIGN_COLS";*/
 			    
 			    //MySQL en Hostalia
 /*			    String url = "jdbc:mysql://mysql377.srv-hostalia.com:3306/";
@@ -268,13 +268,20 @@ public class Principal {
 			    String driver = "com.mysql.jdbc.Driver";
 			    String userName = "u5517321_01";
 			    String password = "BU4959popi";*/
-			    Connection conn = myAcceso.getConexion(url, dbName, userName, password, driver);
-			    ArrayList<HashMap<String, Object>> todosLosDatos = myAcceso.getAllRecords(conn, tabla);
-			    myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
+			    //Connection conn = myAcceso.getConexion(url, dbName, userName, password, driver);
+			    //ArrayList<HashMap<String, Object>> todosLosDatos = myAcceso.getAllRecords(conn, tabla);
+			    //myAcceso.mostrarResulsetArrayListHashMap(todosLosDatos, tabla);
+
+			   int[][] matrizAleatorios = practicas.ejercicio1(3, 3, 5, 10);
+			   practicas.ejercicio2();
 
 			    
-
-			    
+			   practicas.construyeUnObjeto("Vehiculo", 1, "SEAT", 1500.50f, 'A', true, LocalDate.now());
+			   
+			   
+			   practicas.ordenaMatrizEnteros(matriz);
+			   
+			   
 		 System.out.println("\nfin");
 		
 	}

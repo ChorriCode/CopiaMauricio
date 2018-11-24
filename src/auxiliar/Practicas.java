@@ -846,6 +846,63 @@ public class Practicas {
 					numeros[j] = aux;
 				}
 	}
+	
+	
+	public int [] ordenaMatrizEnteros(int[][] numeros) {
+		
+		
+		int totalCeldas = 0;
+		
+		for (int i = 0; i < numeros.length; i++) {
+			totalCeldas += numeros[i].length;		
+		}
+		int [] resultado = new int[totalCeldas];
+		int fila = 0;
+		int col = 0;
+		int index = 0;
+		for (int i = 0; i < numeros.length; i++) {
+			for (int j = 0; j < numeros[i].length; j++) {
+				if (j == numeros[i].length-1) {
+					fila = i+1;
+					col = 0;
+				} else {
+					fila = i;
+					col = j +1;
+				}
+
+				System.out.println("i - j : " + i + " - " + j);
+				System.out.println((fila < numeros.length) + " - " + (col <= numeros[numeros.length-1].length));
+				System.out.println((numeros.length) + " - " + (numeros[numeros.length-1].length));
+				while ((fila < numeros.length) && (col <= numeros[numeros.length-1].length)) {
+					System.out.println((fila < numeros.length) + " - " + (col <= numeros[numeros.length-1].length));
+					System.out.println("ANTES: " + fila + " - " + col);
+					System.out.println("LONG FILA: " + (numeros[fila].length-1));
+					
+					if (numeros[i][j] > numeros[fila][col]) {
+						int aux = numeros[i][j];
+						numeros[i][j] = numeros[fila][col];
+						numeros[fila][col] = aux;						
+					}	
+					System.out.println("-----------------------");
+					if (col >= numeros[fila].length -1) {
+						col = 0;
+						fila++;
+					} else {
+						col++;
+					}
+					System.out.println("DESPUES: " + fila + " - " + col);
+					
+						
+				}
+				resultado[index++] = numeros[i][j];
+			}
+			
+		}	
+		System.out.println();
+		return resultado;
+	}
+	
+	
 	public void ordenarEnterosArrayList(ArrayList<Integer> numeros) {
 		Collections.sort(numeros);
 	}
@@ -954,10 +1011,11 @@ public class Practicas {
 			
 			Class<?> clazz = Class.forName("modelo." + nombreClase);
 			Class[] parameters = new Class[] {Integer.class, String.class, Float.class, Character.class, Boolean.class, LocalDate.class };
-		
+			
 			Constructor<?> constructor = clazz.getConstructor(parameters);
 
 			Object o = constructor.newInstance(id, nombre, precio, tipo, nuevo, fabricacion);
+			System.out.println(clazz.getDeclaredMethod("getNombre").invoke(o));
 			System.out.println("--------" + o);
 			resultado = o;
 		} catch (ClassNotFoundException e) {
@@ -1818,5 +1876,72 @@ public class Practicas {
 		
 	}
 	
+	public int[][] ejercicio1(int nfilas, int nColumnas, int inferior, int superior){
+		int[][] devuelve = new int[nfilas][nColumnas];
+		
+		for (int i = 0; i < devuelve.length; i++) {
+			for (int j = 0; j < devuelve[0].length; j++) {
+				Random numAleatorio = new Random();
+				int dato = inferior + numAleatorio.nextInt(superior - inferior + 1);
+				devuelve[i][j] = dato;
+			}
+		}
+	
+		return devuelve;		
+	}
+	
+	
+	public void ejercicio2() {
+		HashMap<String,ArrayList<Float>> cuentasBancarias = new HashMap<String,ArrayList<Float>>();
+		String numeroCuenta;
+		Float saldoInicial;
+		Float saldoParcial;
+		try {
+			FileReader fr = new FileReader("ficheros/cuentas.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String linea;
+			
+			while((linea=br.readLine()) != null) {
+				String[] datos = linea.split("&");
+				numeroCuenta = datos[0];
+				saldoInicial = Float.parseFloat(datos[1]);
+				ArrayList<Float> cuenta = new ArrayList<Float>();
+				cuenta.add(saldoInicial);
+				cuentasBancarias.put(numeroCuenta, cuenta);				
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			FileReader fr = new FileReader("ficheros/movimientos.txt");
+			BufferedReader br = new BufferedReader(fr);
+			String linea;
+			
+			while((linea=br.readLine()) != null) {
+				String[] datos = linea.split("&");
+				numeroCuenta = datos[1];
+				saldoParcial = Float.parseFloat(datos[2]);
+				//añado el saldo parcial al hashmap donde la clave coincide con el numCuenta
+				cuentasBancarias.get(numeroCuenta).add(saldoParcial);
+							
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(cuentasBancarias);
+		
+	}
 	
 }
